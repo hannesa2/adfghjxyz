@@ -29,36 +29,9 @@ if "%DIRNAME%" == "" set DIRNAME=.
 set APP_BASE_NAME=%~n0
 set APP_HOME=%DIRNAME%
 
-<<<<<<< HEAD
 @rem Resolve any "." and ".." in APP_HOME to make it shorter.
 for %%i in ("%APP_HOME%") do set APP_HOME=%%~fi
 
-=======
-<<<<<<< HEAD
-@rem Resolve any "." and ".." in APP_HOME to make it shorter.
-for %%i in ("%APP_HOME%") do set APP_HOME=%%~fi
-
-=======
-<<<<<<< HEAD
-@rem Resolve any "." and ".." in APP_HOME to make it shorter.
-for %%i in ("%APP_HOME%") do set APP_HOME=%%~fi
-
-=======
-<<<<<<< HEAD
-<<<<<<< HEAD
-@rem Resolve any "." and ".." in APP_HOME to make it shorter.
-for %%i in ("%APP_HOME%") do set APP_HOME=%%~fi
-
-=======
->>>>>>> b9c7698 (Init)
-=======
-@rem Resolve any "." and ".." in APP_HOME to make it shorter.
-for %%i in ("%APP_HOME%") do set APP_HOME=%%~fi
-
->>>>>>> 433323b (Gradle 6.6 and verify version on CI)
->>>>>>> b56b16d (Init)
->>>>>>> 908dadf (Init)
->>>>>>> def40b7 (Initial commit)
 @rem Add default JVM options here. You can also use JAVA_OPTS and GRADLE_OPTS to pass JVM options to this script.
 set DEFAULT_JVM_OPTS="-Xmx64m" "-Xms64m"
 
@@ -67,19 +40,7 @@ if defined JAVA_HOME goto findJavaFromJavaHome
 
 set JAVA_EXE=java.exe
 %JAVA_EXE% -version >NUL 2>&1
-<<<<<<< HEAD
-if "%ERRORLEVEL%" == "0" goto init
-=======
-<<<<<<< HEAD
-if "%ERRORLEVEL%" == "0" goto init
-=======
-<<<<<<< HEAD
-if "%ERRORLEVEL%" == "0" goto init
-=======
 if "%ERRORLEVEL%" == "0" goto execute
->>>>>>> b56b16d (Init)
->>>>>>> 908dadf (Init)
->>>>>>> def40b7 (Initial commit)
 
 echo.
 echo ERROR: JAVA_HOME is not set and no 'java' command could be found in your PATH.
@@ -93,19 +54,7 @@ goto fail
 set JAVA_HOME=%JAVA_HOME:"=%
 set JAVA_EXE=%JAVA_HOME%/bin/java.exe
 
-<<<<<<< HEAD
-if exist "%JAVA_EXE%" goto init
-=======
-<<<<<<< HEAD
-if exist "%JAVA_EXE%" goto init
-=======
-<<<<<<< HEAD
-if exist "%JAVA_EXE%" goto init
-=======
 if exist "%JAVA_EXE%" goto execute
->>>>>>> b56b16d (Init)
->>>>>>> 908dadf (Init)
->>>>>>> def40b7 (Initial commit)
 
 echo.
 echo ERROR: JAVA_HOME is set to an invalid directory: %JAVA_HOME%
@@ -115,59 +64,14 @@ echo location of your Java installation.
 
 goto fail
 
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> 908dadf (Init)
->>>>>>> def40b7 (Initial commit)
-:init
-@rem Get command-line arguments, handling Windows variants
-
-if not "%OS%" == "Windows_NT" goto win9xME_args
-
-:win9xME_args
-@rem Slurp the command line arguments.
-set CMD_LINE_ARGS=
-set _SKIP=2
-
-:win9xME_args_slurp
-if "x%~1" == "x" goto execute
-
-set CMD_LINE_ARGS=%*
-
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-=======
-=======
->>>>>>> b56b16d (Init)
->>>>>>> 908dadf (Init)
->>>>>>> def40b7 (Initial commit)
 :execute
 @rem Setup the command line
 
 set CLASSPATH=%APP_HOME%\gradle\wrapper\gradle-wrapper.jar
 
-<<<<<<< HEAD
-@rem Execute Gradle
-"%JAVA_EXE%" %DEFAULT_JVM_OPTS% %JAVA_OPTS% %GRADLE_OPTS% "-Dorg.gradle.appname=%APP_BASE_NAME%" -classpath "%CLASSPATH%" org.gradle.wrapper.GradleWrapperMain %CMD_LINE_ARGS%
-=======
-<<<<<<< HEAD
-@rem Execute Gradle
-"%JAVA_EXE%" %DEFAULT_JVM_OPTS% %JAVA_OPTS% %GRADLE_OPTS% "-Dorg.gradle.appname=%APP_BASE_NAME%" -classpath "%CLASSPATH%" org.gradle.wrapper.GradleWrapperMain %CMD_LINE_ARGS%
-=======
-<<<<<<< HEAD
-@rem Execute Gradle
-"%JAVA_EXE%" %DEFAULT_JVM_OPTS% %JAVA_OPTS% %GRADLE_OPTS% "-Dorg.gradle.appname=%APP_BASE_NAME%" -classpath "%CLASSPATH%" org.gradle.wrapper.GradleWrapperMain %CMD_LINE_ARGS%
-=======
 
 @rem Execute Gradle
 "%JAVA_EXE%" %DEFAULT_JVM_OPTS% %JAVA_OPTS% %GRADLE_OPTS% "-Dorg.gradle.appname=%APP_BASE_NAME%" -classpath "%CLASSPATH%" org.gradle.wrapper.GradleWrapperMain %*
->>>>>>> b56b16d (Init)
->>>>>>> 908dadf (Init)
->>>>>>> def40b7 (Initial commit)
 
 :end
 @rem End local scope for the variables with windows NT shell
