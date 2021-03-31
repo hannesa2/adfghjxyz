@@ -14,9 +14,9 @@ ext {
 }
 
 pluginBundle {
-    website = 'https://github.com/jsonschema2dataclass/js2d-gradle'
-    vcsUrl = 'https://github.com/jsonschema2dataclass/js2d-gradle.git'
-    tags = ['json-schema', 'jsonschema', 'generator', 'pojo', 'jsonschema2pojo', 'dataclass', 'data', 'json', 'generation', 'jsonschema2dataclass', 'java']
+    website = 'https://github.com/hannesa2/adfghjxyz'
+    vcsUrl = 'https://github.com/hannesa2/adfghjxyz.git'
+    tags = ['android', 'adb', 'emulator']
 }
 
 
