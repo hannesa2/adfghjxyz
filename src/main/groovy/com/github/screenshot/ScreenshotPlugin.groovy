@@ -43,7 +43,7 @@ class ScreenshotPlugin implements Plugin<Project> {
     void apply(Project project) {
         verifyGradleVersion()
 
-        project.extensions.create('jsonSchema2Pojo', ScreenshotExtension)
+        project.extensions.create('screenShot', ScreenshotExtension)
         ScreenshotExtension extension = project.extensions.getByType(ScreenshotExtension)
         extension.targetDirectoryPrefix.convention(project.layout.buildDirectory.dir(TARGET_FOLDER_BASE))
         project.afterEvaluate {

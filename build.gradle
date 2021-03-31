@@ -19,7 +19,6 @@ pluginBundle {
     tags = ['android', 'adb', 'emulator']
 }
 
-
 gradlePlugin {
     plugins {
         grabScreenshotPlugin {
