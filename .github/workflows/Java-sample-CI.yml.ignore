@@ -20,6 +20,7 @@ jobs:
       - name: Install JDK ${{ matrix.java_version }}
         uses: actions/setup-java@v1
         with:
+          distribution: "adopt"
           java-version: ${{ matrix.java_version }}
       - name: Build project
         run: ./gradlew assemble
