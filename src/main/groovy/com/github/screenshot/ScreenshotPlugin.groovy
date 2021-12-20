@@ -17,11 +17,7 @@ package com.github.screenshot
 
 import groovy.transform.stc.ClosureParams
 import groovy.transform.stc.SimpleType
-import org.gradle.api.GradleException
-import org.gradle.api.Plugin
-import org.gradle.api.Project
-import org.gradle.api.ProjectConfigurationException
-import org.gradle.api.Task
+import org.gradle.api.*
 import org.gradle.api.file.ConfigurableFileCollection
 import org.gradle.api.file.DirectoryProperty
 import org.gradle.api.model.ObjectFactory
@@ -36,14 +32,14 @@ class ScreenshotPlugin implements Plugin<Project> {
     private static final String MINIMUM_GRADLE_VERSION = "6.0"
     public static String TARGET_FOLDER_BASE = 'generated/sources/js2d'
     public static String DEFAULT_EXECUTION_NAME = 'main'
-    public static String TASK_NAME = 'generateJsonSchema2DataClass'
+    public static String TASK_NAME = 'grabScreenshots'
     public static String PLUGIN_ID = 'org.grabScreenshot'
 
     @Override
     void apply(Project project) {
         verifyGradleVersion()
 
-        project.extensions.create('jsonSchema2Pojo', ScreenshotExtension)
+        project.extensions.create('screenShotExtension', ScreenshotExtension)
         ScreenshotExtension extension = project.extensions.getByType(ScreenshotExtension)
         extension.targetDirectoryPrefix.convention(project.layout.buildDirectory.dir(TARGET_FOLDER_BASE))
         project.afterEvaluate {
@@ -70,7 +66,7 @@ class ScreenshotPlugin implements Plugin<Project> {
                     getJavaJsonPath(javaPluginConvention),
                     false
             )
-            def js2pTask = createJS2DTask(project, extension, "", "",
+            def js2pTask = createGrabTask(project, extension, "", "",
                     { js2pTaskExecution ->
                         js2pTaskExecution.dependsOn('processResources')
                         javaPluginConvention.getSourceSets().getByName('main').allJava.srcDir(js2pTaskExecution.targetDirectory)
@@ -92,7 +88,7 @@ class ScreenshotPlugin implements Plugin<Project> {
 
         def variants = obtainAndroidVariants(project)
         variants.all { variant ->
-            def task = createJS2DTask(
+            def task = createGrabTask(
                     project,
                     extension,
                     "For${variant.name.capitalize()}",
@@ -138,7 +134,7 @@ class ScreenshotPlugin implements Plugin<Project> {
         }
     }
 
-    private static Task createJS2DTask(
+    private static Task createGrabTask(
             Project project,
             ScreenshotExtension extension,
             String taskNameSuffix,
@@ -146,16 +142,16 @@ class ScreenshotPlugin implements Plugin<Project> {
             @ClosureParams(value = SimpleType, options = ['com.github.screenshot.GenerateFromJsonSchemaTask']) Closure postConfigure
     ) {
 
-        Task js2dTask = project.task(
+        Task grabTask = project.task(
                 [
-                        description: 'Generates Java classes from a json schema using JsonSchema2Pojo. ',
+                        description: 'Grab images from adb ',
                         group      : 'Build'
                 ],
                 "${TASK_NAME}${taskNameSuffix}"
         )
 
         extension.executions.eachWithIndex { execution, execId ->
-            GenerateFromJsonSchemaTask task = createJS2DTaskExecution(
+            GenerateFromJsonSchemaTask task = createGrabTaskExecution(
                     project,
                     taskNameSuffix,
                     execId,
@@ -165,12 +161,12 @@ class ScreenshotPlugin implements Plugin<Project> {
                     targetDirectorySuffix
             )
             postConfigure(task)
-            js2dTask.dependsOn(task)
+            grabTask.dependsOn(task)
         }
-        return js2dTask
+        return grabTask
     }
 
-    private static GenerateFromJsonSchemaTask createJS2DTaskExecution(
+    private static GenerateFromJsonSchemaTask createGrabTaskExecution(
             Project project,
             String taskNameSuffix,
             int executionId,
@@ -199,8 +195,7 @@ class ScreenshotPlugin implements Plugin<Project> {
         return task
     }
 
-    private static void setupConfigExecutions(
-            ObjectFactory objectFactory, ScreenshotExtension config, Path path, boolean excludeGenerated) {
+    private static void setupConfigExecutions(ObjectFactory objectFactory, ScreenshotExtension config, Path path, boolean excludeGenerated) {
         if (config.source.isEmpty()) {
             config.source.from(path)
         }
@@ -218,6 +213,7 @@ class ScreenshotPlugin implements Plugin<Project> {
             }
         }
     }
+
     private static void verifyGradleVersion() {
         if (GradleVersion.current() < GradleVersion.version(MINIMUM_GRADLE_VERSION)) {
             throw new GradleException("Plugin ${PLUGIN_ID} requires at least Gradle $MINIMUM_GRADLE_VERSION, but you are using ${GradleVersion.current().version}")

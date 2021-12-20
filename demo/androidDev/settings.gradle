@@ -1,7 +1,5 @@
-rootProject.name = 'js2d-gradle Android development'
+rootProject.name = 'screenshot Android development'
 
 include ':app'
-include ':lib'
-include ':lib2'
 
 includeBuild '../..'

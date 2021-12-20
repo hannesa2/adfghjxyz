@@ -19,7 +19,6 @@ pluginBundle {
     tags = ['android', 'adb', 'emulator']
 }
 
-
 gradlePlugin {
     plugins {
         grabScreenshotPlugin {
@@ -33,6 +32,7 @@ gradlePlugin {
 }
 
 dependencies {
+    implementation 'com.google.android.tools:ddmlib:r13'
     implementation 'org.codehaus.groovy:groovy-all:3.0.9'
     implementation 'org.jsonschema2pojo:jsonschema2pojo-core:1.1.1'
 
