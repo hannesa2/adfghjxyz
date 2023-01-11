@@ -34,7 +34,7 @@ gradlePlugin {
 
 dependencies {
     implementation 'org.codehaus.groovy:groovy-all:3.0.14'
-    implementation 'org.jsonschema2pojo:jsonschema2pojo-core:1.1.1'
+    implementation 'org.jsonschema2pojo:jsonschema2pojo-core:1.1.2'
 
     testImplementation platform('org.junit:junit-bom:5.9.2')
 
